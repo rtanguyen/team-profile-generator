@@ -30,3 +30,16 @@ h1 {
 h6 {
     display: inline;
 }
+
+.link {
+    display: inline;
+}
+
+p {
+    font-size: .9rem;
+}
+
+.card-body {
+    text-align: left;
+}
+

@@ -4,78 +4,85 @@ const displayManagers = managersArr => {
     if(!managersArr) {
         return '';
     }  
-    console.log(managersArr);
     return `
-    <div class="col-lg-4 col-md-4 col-sm-6 pt-4">
-          <div class="card">
-          <div class="card-header">
           ${managersArr
             .map(({name, id, email, officeNumber}) => {
-                return `
-                <h5 class="card-title">${name}</h5>
+              return `
+                <div class="col-lg-4 col-md-4 col-sm-6 pt-4">
+                <div class="card">
+                <div class="card-header">
+                <h4 class="card-title">${name}</h4>
                 <i class="fas fa-briefcase fa-lg"></i>
                 <h6 class="card-text">Manager</h6>
             </div>
             <div class="card-body">
-                <p>Email: </p><a href="mailto:${email}">${email}</a>
+                <p class="card-text mb-0">Employee ID: ${id}</p>
+                <p class="link">Email: <a href="mailto:${email}">${email}</a></p>
                 <p class="card-text">Office: ${officeNumber}</p>
             </div>
             </div>
     </div>
     `;
-        })
-    });
-        `;
-}
+  }).join('')
+}`;
+  }
 
 
-const displayEngineers = engineers => {
-    if(!engineers) {
+const displayEngineers = engineersArr => {
+    if(!engineersArr) {
         return '';
     } 
-    return 
-    `
+    return `
+    ${engineersArr
+      .map(({name, id, email, github}) => {
+      return `
     <div class="col-lg-4 col-md-4 col-sm-6 pt-4">
           <div class="card">
           <div class="card-header">
-            <h5 class="card-title">${engineers.name}</h5>
+            <h4 class="card-title">${name}</h4>
             <i class="fas fa-laptop-code fa-lg"></i>
-            <h6 class="card-text">${engineers.role}</h6>
+            <h6 class="card-text">Engineer</h6>
           </div>
           <div class="card-body">
-            <p>Email: </p><a href="mailto:${engineers.email}">${engineers.email}</a>
-            <p class="card-text">GitHub: </p><a href="https://github.com/${engineers.username}" target="_blank">${engineers.username}</a>
+            <p class="card-text mb-0">Employee ID: ${id}</p>
+            <p class="link">Email: <a href="mailto:${email}">${email}</a></p><br>
+            <p class="card-text link">GitHub: <a href="https://github.com/${github}" target="_blank">${github}</a></p>
           </div>
       </div>
-    </div>
-    `
-}
-const displayInterns = interns => {
-if(!interns) {
+      </div>
+      `
+          }).join('')
+      }`;
+  }
+
+const displayInterns = internsArr => {
+if(!internsArr) {
     return '';
 } 
-return 
-`
+return `
+${internsArr
+  .map(({name, id, email, school}) => {
+      return `
 <div class="col-lg-4 col-md-4 col-sm-6 pt-4">
       <div class="card">
       <div class="card-header">
-        <h5 class="card-title">${interns.name}</h5>
+        <h4 class="card-title">${name}</h4>
         <i class="fas fa-baby fa-lg"></i>
-        <h6 class="card-text">${interns.role}</h6>
+        <h6 class="card-text">Intern</h6>
       </div>
       <div class="card-body">
-        <p>Email: </p><a href="mailto:${interns.email}">${interns.email}</a>
-        <p class="card-text">School: ${interns.school}</p>
+        <p class="card-text mb-0">Employee ID: ${id}</p>
+        <p class="link">Email: <a href="mailto:${email}">${email}</a></p>
+        <p class="card-text">School: ${school}</p>
       </div>
-  </div>
-</div>
-`
+      </div>
+      </div>`;
+  }).join('')
+}`;
 }
 
 
-module.exports = templateData => {
-    const {managersArr, engineers, interns} = templateData;
-    console.log(templateData);
+module.exports = (managersArr, engineersArr, internsArr) => {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +103,7 @@ module.exports = templateData => {
     crossorigin="anonymous"
   ></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" href="/src/style.css"/>
+    <link rel="stylesheet" href="./assets/style.css"/>
     <title>Team Profile</title>
   </head>
   <body>
@@ -107,10 +114,11 @@ module.exports = templateData => {
       <div class="col mt-5">
       <div class="row" id="team-container">
             ${displayManagers(managersArr)}
-            ${displayEngineers(engineers)}
-            ${displayInterns(interns)}
-      </div>
-      </div>
+            ${displayEngineers(engineersArr)}
+            ${displayInterns(internsArr)}
+
+    </div>
+    </div>
     </div>
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"

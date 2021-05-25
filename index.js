@@ -79,7 +79,7 @@ initializePrompts() {
                 office.officeNumber
             );
             this.managers.push(newManager);
-            console.log(this.managers);
+            // console.log(this.managers);
 
             return this.addEmployeesConfirm();
         });
@@ -95,7 +95,7 @@ initializePrompts() {
                 github.username
             );
             this.engineers.push(newEngineer);
-            console.log(newEngineer);
+            // console.log(newEngineer);
 
             return this.addEmployeesConfirm();
         });
@@ -111,7 +111,7 @@ initializePrompts() {
                 school.school
             );
             this.interns.push(newIntern);
-            console.log(newIntern);
+            // console.log(newIntern);
 
             return this.addEmployeesConfirm();
         });
