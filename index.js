@@ -130,9 +130,11 @@ initializePrompts() {
                 this.initializePrompts();
             } else {
                 const pageHTML = generatePage(this.managers, this.engineers, this.interns)
+                console.log('==========================');
+                console.log(this.managers, this.engineers, this.interns);                 
                 fs.writeFile('./index.html', pageHTML, err => {
                     if (err) throw new Error(err);
-                console.log('Your team profile has been generated! heck out index.html in this directory to see it.');
+                console.log('Your team profile has been generated! Check out index.html in this directory to see it.');
             })
         }
     })

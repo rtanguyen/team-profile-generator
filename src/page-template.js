@@ -1,27 +1,32 @@
 //TODO: should loop through arrays to create employee cards (.map?)
 
-const displayManagers = managers => {
-    if(!managers) {
+const displayManagers = managersArr => {
+    if(!managersArr) {
         return '';
-    } 
-    return 
-    `
+    }  
+    console.log(managersArr);
+    return `
     <div class="col-lg-4 col-md-4 col-sm-6 pt-4">
           <div class="card">
           <div class="card-header">
-            <h5 class="card-title">${managers.name}</h5>
-            <i class="fas fa-briefcase fa-lg"></i>
-            <h6 class="card-text">${managers.role}</h6>
-          </div>
-          <div class="card-body">
-            <p>Email: </p><a href="mailto:${managers.email}">${managers.email}</a>
-            <p class="card-text">Office: ${managers.officeNumber}</p>
-          </div>
-      </div>
+          ${managersArr
+            .map(({name, id, email, officeNumber}) => {
+                return `
+                <h5 class="card-title">${name}</h5>
+                <i class="fas fa-briefcase fa-lg"></i>
+                <h6 class="card-text">Manager</h6>
+            </div>
+            <div class="card-body">
+                <p>Email: </p><a href="mailto:${email}">${email}</a>
+                <p class="card-text">Office: ${officeNumber}</p>
+            </div>
+            </div>
     </div>
-    `
+    `;
+        })
+    });
+        `;
 }
-
 
 
 const displayEngineers = engineers => {
@@ -45,7 +50,7 @@ const displayEngineers = engineers => {
     </div>
     `
 }
-const displayInterns
+const displayInterns = interns => {
 if(!interns) {
     return '';
 } 
@@ -65,10 +70,12 @@ return
   </div>
 </div>
 `
+}
 
 
 module.exports = templateData => {
-    const {managers, engineers, interns} = templateData;
+    const {managersArr, engineers, interns} = templateData;
+    console.log(templateData);
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +106,7 @@ module.exports = templateData => {
     <div class="container-fluid p-0">
       <div class="col mt-5">
       <div class="row" id="team-container">
-            ${displayManagers(managers)}
+            ${displayManagers(managersArr)}
             ${displayEngineers(engineers)}
             ${displayInterns(interns)}
       </div>
