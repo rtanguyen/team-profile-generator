@@ -5,6 +5,7 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const generatePage = require("./src/page-template");
 
 var employeePrompts = [
     {
@@ -25,6 +26,9 @@ var employeePrompts = [
 class team {
     constructor() {
         this.employee;
+        this.managers = [];
+        this.engineers = [];
+        this.interns = [];
     }
 
 initializePrompts() {
@@ -74,7 +78,8 @@ initializePrompts() {
                 employeeData.email,
                 office.officeNumber
             );
-            console.log(newManager);
+            this.managers.push(newManager);
+            console.log(this.managers);
 
             return this.addEmployeesConfirm();
         });
@@ -89,6 +94,7 @@ initializePrompts() {
                 employeeData.email,
                 github.username
             );
+            this.engineers.push(newEngineer);
             console.log(newEngineer);
 
             return this.addEmployeesConfirm();
@@ -104,6 +110,7 @@ initializePrompts() {
                 employeeData.email,
                 school.school
             );
+            this.interns.push(newIntern);
             console.log(newIntern);
 
             return this.addEmployeesConfirm();
@@ -117,15 +124,19 @@ initializePrompts() {
                 name: 'addConfirm',
                 message: 'Do you want to add another employee?',
                 default: true
-            }
-        ).then(({addConfirm}) => {
+            })
+        .then(({addConfirm}) => {
             if(addConfirm) {
                 this.initializePrompts();
             } else {
-                console.log('Your team profile has been generated!');
-            }
-        })
-    }
+                const pageHTML = generatePage(this.managers, this.engineers, this.interns)
+                fs.writeFile('./index.html', pageHTML, err => {
+                    if (err) throw new Error(err);
+                console.log('Your team profile has been generated! heck out index.html in this directory to see it.');
+            })
+        }
+    })
+}
 }
 
 new team().initializePrompts();

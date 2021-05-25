@@ -1,0 +1,32 @@
+* {
+    font-family: 'Quicksand', sans-serif;
+    /* background-color: #fbfefb; */
+    box-sizing: border-box;
+}
+body {
+    background-color:#F4F1EF;
+}
+
+.container-fluid {
+    text-align:center;
+}
+
+.row, .col-lg-2, .col-md-4 {
+    display:inline-block;
+   vertical-align: middle;
+   float: none;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 1%;
+}
+
+
+.card-header {
+    background-color: #216869;
+    color: white;
+}
+h6 {
+    display: inline;
+}
