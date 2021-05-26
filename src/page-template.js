@@ -103,7 +103,7 @@ module.exports = (managersArr, engineersArr, internsArr) => {
     crossorigin="anonymous"
   ></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" href="./assets/style.css"/>
+    <link rel="stylesheet" href="style.css"/>
     <title>Team Profile</title>
   </head>
   <body>

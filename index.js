@@ -43,17 +43,41 @@ initializePrompts() {
         type: 'input',
         name: 'name',
         message: 'Enter employee name',
+        validate: (nameInput) => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log("Please enter employee name");
+              return false;
+            }
+        },
         },
         {
         type: 'input',
         name: 'id',
         message: 'Enter employee ID',
+        validate: (idInput) => {
+            if (idInput) {
+              return true;
+            } else {
+              console.log("Please enter employee ID");
+              return false;
+            }
+        },
         },
         {
         type: 'input',
         name: 'email',
-        message: 'Enter employee email address',
+        message: 'Please enter employee email address',
+        validate: (emailInput) => {
+            if (emailInput) {
+              return true;
+            } else {
+              console.log("Please enter your email");
+              return false;
+            }
         }
+    },
     ]).then((employeeData) => {
         switch (employeeData.role) {
             case 'Manager':
@@ -132,7 +156,7 @@ initializePrompts() {
                 const pageHTML = generatePage(this.managers, this.engineers, this.interns)
                 console.log('==========================');
                 console.log(this.managers, this.engineers, this.interns);                 
-                fs.writeFile('./index.html', pageHTML, err => {
+                fs.writeFile('./dist/index.html', pageHTML, err => {
                     if (err) throw new Error(err);
                 console.log('Your team profile has been generated! Check out index.html in this directory to see it.');
             })
